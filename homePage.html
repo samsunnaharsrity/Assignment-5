@@ -26,8 +26,75 @@
 
 
 <body>
-    
 
-    <script src="./script/index.js"></script>
+                    <!-- navsec     -->
+    
+<section>
+    <div class="navbar bg-base-100 shadow-sm">
+  <div class="flex-1">
+    <a class="btn btn-ghost text-xl">
+        <img src="./assets/github-logo.png" alt="" class="w-[25px]">
+        GitHub Issues Tracker</a>
+  </div>
+  <div class="flex gap-2">
+    <input type="text" placeholder="Search Issue..." class="input input-bordered w-24 md:w-auto text-[#64748B]" />
+
+    <button class="btn btn-primary text-sm py-1 font-normal">+ New Issue</button>
+  </div>
+</div>
+</section>
+
+                    <!-- main sec -->
+<section>
+    <div class="bg-gray-100 mx-auto w-10/12 align-center justify-center">
+                 <!-- all open close btn -->
+        <div class="flex gap-4 bg-white mt-10 p-4 shadow-md">
+            <button class="btn btn-primary ">All</button>
+            <button class="btn btn-outline text-[#64748B] ">Open</button>
+            <button class="btn btn-outline text-[#64748B]">Close</button>
+        </div>
+
+        <!-- Track and manage your project issues -->
+        <div class="flex justify-between p-4 bg-white shadow-md mt-10">
+            
+            
+            <div class="flex items-center gap-3">
+                <img src="./assets/Aperture.png" alt="btn img">
+                <div>
+                    <p>50 Issues</p>
+                    <p class="text-[#64748B] text-sm">Track and manage your project issues</p>
+                </div>
+            </div>
+
+            <div class="flex justify-center items-center">
+                
+                <p class=""><i class="fa-solid fa-circle fa-xs px-5" style="color: rgb(40, 143, 44);"></i>Open</p>
+                <p class=""><i class="fa-solid fa-circle fa-xs px-5" style="color: #A855F7;"></i>Close</p>
+            </div>
+        </div>
+                        <!-- cards -->
+
+        <div class="grid grid-cols-4 w-11/12 mx-auto bg-white m-10">
+            <div class="flex">
+                <div><img src="./assets/Open-Status.png" alt="open"></div>
+                <p class="btn btn-soft btn-error p-2 h-5 text-sm rounded-full">High</p>
+            </div>
+
+            <div>
+                <p class="font-semibold text-xl">Fix navigation menu on mobile devices</p>
+                <p class="text-[#64748B] text-sm">The navigation menu doesn't collapse properly on mobile devices...</p>
+            </div>
+
+            <div >
+                <p class="btn btn-outline btn-warning h-5 rounded-full"><i class="fa-solid fa-bug" style="color: rgb(192, 40, 18);"></i>Bug</p>
+                <p class="btn btn-outline btn-warning h-5 rounded-full"><i class="fa-solid fa-life-ring fa-xs" style="color: rgb(188, 154, 74);"></i></i>Help wanted</p>
+
+            </div>
+        </div>
+    </div>
+</section>                     
+
+
+    <!-- <script src="./script/index.js"></script> -->
 </body>
 </html>

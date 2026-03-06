@@ -23,5 +23,3 @@ else{
 });
 
 //GitHub Issues Tracker
-
-console.log(hlw);
