@@ -54,8 +54,8 @@ cards.forEach((card) => {
             </div>
 
             <div>
-                <p class="font-semibold text-xl">${card.title}}</p>
-                <p class="text-[#64748B] text-sm">${card.description}}</p>
+                <p class="font-semibold text-xl">${card.title}</p>
+                <p class="text-[#64748B] text-sm">${card.description}</p>
             </div>
 
             <div  class="text-left">
@@ -65,8 +65,8 @@ cards.forEach((card) => {
 
             <hr>
             <div class="text-[#64748B] text-sm">
-                <p>${card.createdAt}}</p>
-                <p>${card.updatedAt}}</p>
+                <p>${card.createdAt}</p>
+                <p>${card.updatedAt}</p>
             </div>
            </div>
               
@@ -111,6 +111,8 @@ function btns(id) {
 
    // console.log(id);
 }
+
+
 
 //modal
 
@@ -163,3 +165,24 @@ const displayModal =(modal)=>{
 
     document.getElementById("my_modal").showModal()
 }
+
+
+//search data
+
+document.getElementById("search-btn").addEventListener('click',function(){
+    const inputData = document.getElementById("search-data")
+
+    const searchData = inputData.value.trim().toLowerCase()
+    console.log(searchData);
+
+ fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${searchData}`)
+ .then ((res)=> res.json())
+ .then((data )=>{
+    const allData = data.data
+    //console.log(allData);
+
+    const allSearchData = allData.filter((card) => card.title.toLowerCase().includes(searchData)
+)
+      console.log(allSearchData);
+ })
+})
