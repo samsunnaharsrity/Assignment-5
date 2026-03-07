@@ -1,7 +1,26 @@
+
+
+
+//spinner
+
+const loadingSpinner = (spinner) =>{
+    if(spinner == true){
+        document.getElementById("loading").classList.remove("hidden")
+        document.getElementById("cards-issues").classList.add("hidden")
+
+    }else{
+        document.getElementById("loading").classList.add("hidden")
+        document.getElementById("cards-issues").classList.remove("hidden")
+
+    }
+} 
+
 //GitHub Issues Tracker
+loadingSpinner()
 const cardsIssues = document.getElementById("cards-issues")
 
 async function cardsIssuesItem() {
+    loadingSpinner(true)
     const res = await fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues")
     const data = await res.json()
     displayCard(data.data);
@@ -74,7 +93,11 @@ cards.forEach((card) => {
     `
 
     cardsIssues.appendChild(allIssues)
+
+    loadingSpinner(false)
 });
+
+
 }
  cardsIssuesItem()
 
@@ -186,3 +209,4 @@ document.getElementById("search-btn").addEventListener('click',function(){
       console.log(allSearchData);
  })
 })
+
