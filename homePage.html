@@ -27,7 +27,7 @@
 
 <body class="bg-#F8FAFC">
 
-                    <!-- navsec     -->
+                    <!-- navsec + search  -->
     
 <section class="bg-#F8FAFC">
 <div class="navbar bg-#FFFFFF shadow-sm ">
@@ -54,9 +54,9 @@
 <div class="bg-#FFFFFF mx-auto w-10/12 align-center justify-center ">
                  <!-- all open close btn -->
         <div class="flex gap-4 bg-white mt-10 p-4 shadow-md rounded-md">
-            <button class="btn btn-primary ">All</button>
-            <button class="btn btn-outline text-[#64748B] ">Open</button>
-            <button class="btn btn-outline text-[#64748B]">Close</button>
+            <button onclick="btns('all-btn')" id="all-btn" class="bg-blue-700 text-white rounded-md px-3 text-sm font-semibold  border-1 border-gray-300 all">All</button>
+            <button onclick="btns('open-btn')" id="open-btn" class="bg-gray-100 rounded-md px-3 text-sm font-semibold  border-1 border-gray-300 open">Open</button>
+            <button onclick="btns('closed-btn')" id="closed-btn" class="bg-gray-100 rounded-md px-3 text-sm font-semibold border-1 border-gray-300 closed">Closed</button>
         </div>
 </div>
 
@@ -69,7 +69,7 @@
             <div class="flex items-center gap-3">
                 <img src="./assets/Aperture.png" alt="btn img">
                 <div>
-                    <p>50 Issues</p>
+                    <p id="issues-id">50 Issues</p>
                     <p class="text-[#64748B] text-sm">Track and manage your project issues</p>
                 </div>
             </div>

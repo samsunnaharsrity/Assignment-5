@@ -8,10 +8,6 @@ async function cardsIssuesItem() {
 }
 
 
-
-
-
-
 function displayCard (cards) {
 console.log(cards);
 
@@ -22,13 +18,31 @@ cards.forEach((card) => {
 
 
 
-    //  const statusImg = card.status === "open"?"./assets/Open-Status.png":"./assets/Closed-Status.png"
-
+    //  const Img = card.status === ./assets/Open-Status.png":"./assets/Closed-Status.png"
+// open & close img
     if(card.status === "open"){
         img = "./assets/Open-Status.png"
     }else{
         img = "./assets/Closed-Status.png"
     }
+
+
+//priority 
+// cards.forEach((card)=>{
+    
+// //let priorityColor ="";   
+// if ( card.priority === "high"){
+//     style.color = "red"
+// }else if (card.priority === "medium"){
+//     style.color ="yellow"
+// }else if(card.priority === "low"){
+//     style.color="#9CA3AF"
+// }
+// })
+
+
+
+
     allIssues.innerHTML =`
 
             <div class="flex justify-between">
@@ -60,3 +74,38 @@ cards.forEach((card) => {
 }
  cardsIssuesItem()
 
+
+
+//issues-sec
+// const issuesID = document.getElementById("issues-id")
+
+let all = document.querySelectorAll("all").length
+let open = document.querySelectorAll("open").length
+let closed = document.querySelectorAll("closed").length
+
+//  btns
+
+const allBtn = document.getElementById("all-btn")
+const openBtn = document.getElementById("open-btn")
+const closedBtn = document.getElementById("closed-btn")
+
+
+function btns(id) {
+    allBtn.classList.remove('bg-blue-700', 'text-white')
+    openBtn.classList.remove('bg-blue-700', 'text-white')
+    closedBtn.classList.remove('bg-blue-700', 'text-white')
+
+    
+    allBtn.classList.add('bg-gray-100', 'text-black')
+    openBtn.classList.add('bg-gray-100', 'text-black')
+    closedBtn.classList.add('bg-gray-100', 'text-black')  
+    
+    const clickedBtn = document.getElementById(id)
+
+    clickedBtn.classList.remove('bg-gray-100', 'text-black')
+    clickedBtn.classList.add('bg-blue-700', 'text-white')
+    
+    //console.log(clickedBtn);
+
+   // console.log(id);
+}
