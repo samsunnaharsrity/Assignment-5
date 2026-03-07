@@ -25,12 +25,13 @@
 </head>
 
 
-<body>
+<body class="bg-#F8FAFC">
 
                     <!-- navsec     -->
     
-<section>
-    <div class="navbar bg-base-100 shadow-sm">
+<section class="bg-#F8FAFC">
+<div class="navbar bg-#FFFFFF shadow-sm ">
+
   <div class="flex-1">
     <a class="btn btn-ghost text-xl">
         <img src="./assets/github-logo.png" alt="" class="w-[25px]">
@@ -41,22 +42,29 @@
 
     <button class="btn btn-primary text-sm py-1 font-normal">+ New Issue</button>
   </div>
+
 </div>
 </section>
 
+
+
                     <!-- main sec -->
 <section>
-    <div class="bg-gray-100 mx-auto w-10/12 align-center justify-center">
+
+<div class="bg-#FFFFFF mx-auto w-10/12 align-center justify-center ">
                  <!-- all open close btn -->
-        <div class="flex gap-4 bg-white mt-10 p-4 shadow-md">
+        <div class="flex gap-4 bg-white mt-10 p-4 shadow-md rounded-md">
             <button class="btn btn-primary ">All</button>
             <button class="btn btn-outline text-[#64748B] ">Open</button>
             <button class="btn btn-outline text-[#64748B]">Close</button>
         </div>
+</div>
 
-        <!-- Track and manage your project issues -->
-        <div class="flex justify-between p-4 bg-white shadow-md mt-10">
-            
+
+                    <!-- Track and manage your project issues -->
+<div class="bg-#FBFBFB drop-shadow-md mx-auto w-10/12 align-center justify-center ">
+         
+<div class="flex justify-between p-4 bg-white shadow-md mt-10 rounded-md">
             
             <div class="flex items-center gap-3">
                 <img src="./assets/Aperture.png" alt="btn img">
@@ -67,16 +75,19 @@
             </div>
 
             <div class="flex justify-center items-center">
-                
-                <p class=""><i class="fa-solid fa-circle fa-xs px-5" style="color: rgb(40, 143, 44);"></i>Open</p>
-                <p class=""><i class="fa-solid fa-circle fa-xs px-5" style="color: #A855F7;"></i>Close</p>
+                <p class=""><i class="fa-solid fa-circle fa-xs px-5" style="color: #00A96E;"></i>Open</p>
+                <p class=""><i class="fa-solid fa-circle fa-xs px-5" style="color: #A855F7;"></i>Closed</p>
             </div>
-        </div>
-                        <!-- cards -->
+</div>
+    
+                        <!-- cards issues-->
 
-        <div class="grid grid-cols-4 w-11/12 mx-auto bg-white m-10">
-            <div class="flex">
-                <div><img src="./assets/Open-Status.png" alt="open"></div>
+<div id="cards-issues" class="grid grid-cols-3 mx-auto w-11/12 h-auto bg-#FBFBFB m-10 gap-5">
+    <!-- <div class="#EFEFEF p-5 rounded-md space-y-5 shadow-xl border-t-5 border-green-500">
+            <div class="flex justify-between">
+                <div><img src="./assets/Open-Status.png" alt="open">
+                <img src="./assets/Closed- Status .png" alt="closed">
+                </div>
                 <p class="btn btn-soft btn-error p-2 h-5 text-sm rounded-full">High</p>
             </div>
 
@@ -85,16 +96,25 @@
                 <p class="text-[#64748B] text-sm">The navigation menu doesn't collapse properly on mobile devices...</p>
             </div>
 
-            <div >
-                <p class="btn btn-outline btn-warning h-5 rounded-full"><i class="fa-solid fa-bug" style="color: rgb(192, 40, 18);"></i>Bug</p>
+            <div class="text-left">
+                <p class="btn btn-outline btn-error h-5  rounded-full"><i class="fa-solid fa-bug" style="color: rgb(241, 45, 14)"></i>Bug</p>
                 <p class="btn btn-outline btn-warning h-5 rounded-full"><i class="fa-solid fa-life-ring fa-xs" style="color: rgb(188, 154, 74);"></i></i>Help wanted</p>
-
             </div>
-        </div>
-    </div>
+<hr>
+            <div class="text-[#64748B] text-sm">
+                <p>#1 by john_doe</p>
+                <p>1/15/2024</p>
+            </div>
+    </div> -->
+
+</div>
+
+</div>
+
+            
 </section>                     
 
 
-    <!-- <script src="./script/index.js"></script> -->
+    <script src="./script/homePage.js"></script>
 </body>
 </html>

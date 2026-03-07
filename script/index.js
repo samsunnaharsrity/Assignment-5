@@ -22,4 +22,3 @@ else{
 }
 });
 
-//GitHub Issues Tracker
