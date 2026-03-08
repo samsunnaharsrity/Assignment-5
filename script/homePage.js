@@ -159,7 +159,7 @@ const displayModal =(modal)=>{
         <h2  class="font-semibold text-md">${modal.title}</h2>
         <p class="bg-green-600 rounded-full w-[50px] text-center text-sm  text-white">${modal.status}</p>
         <ul class="flex gap-5 text-sm">
-            <ol>Opened by Fahim Ahmed</ol>
+            <ol>${modal.author}</ol>
             <ol>22/02/2026</ol>
         </ul>
 
