@@ -25,7 +25,10 @@ async function cardsIssuesItem() {
     const res = await fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues")
     const data = await res.json()
     allCards = data.data
+
+
     displayCard(allCards)
+    
     renderOpen(allCards)
     renderClosed(allCards)
    
@@ -36,7 +39,7 @@ function displayCard(cards) {
 console.log(cards);
 cardsIssues.innerHTML = ""; 
 cards.forEach((card) => {
-     const allIssues = document.createElement("div")//${card.meaning} /${card.pronunciation}
+     const allIssues = document.createElement("div");
      allIssues.className ="bg-#EFEFEF   "
 
 // open & close img
@@ -99,14 +102,16 @@ let border="border-green-500";
     cardsIssues.appendChild(allIssues)
 
     loadingSpinner(false)
+
+
 });
 
-
+const issuesId = document.querySelector(".issues-id")
+issuesId.innerText = cards.length;
 }
- cardsIssuesItem()
+cardsIssuesItem()
 
 //  btns
-const issuesId = document.querySelector(".issues-id")
 
 const allBtn = document.getElementById("all-btn");
 const openBtn = document.getElementById("open-btn");
@@ -114,7 +119,9 @@ const closedBtn = document.getElementById("closed-btn");
 
 const openContainer = document.getElementById("open-container")
 const closedContainer = document.getElementById("closed-container")
-console.log(cardsIssues,openContainer,closedContainer);
+//console.log(cardsIssues,openContainer,closedContainer);
+
+const issuesId = document.querySelector(".issues-id")
 
 // projectIssues()
 
@@ -225,11 +232,8 @@ document.getElementById("search-btn").addEventListener('click',function(){
 
     const searchData = inputData.value.trim().toLowerCase()
    // console.log(searchData);
-   if(!searchData){
-    return
-   }
 
- fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${(searchData)}`)
+ fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${searchData}`)
  .then ((res)=> res.json())
  .then((data )=>{
     const allData = data.data
