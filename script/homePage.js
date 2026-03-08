@@ -14,9 +14,9 @@ const loadingSpinner = (spinner) =>{
 
     }
 } 
+loadingSpinner()
 
 //GitHub Issues Tracker
-loadingSpinner()
 const cardsIssues = document.getElementById("cards-issues")
 
 async function cardsIssuesItem() {
@@ -39,6 +39,7 @@ cards.forEach((card) => {
 
     //  const Img = card.status === ./assets/Open-Status.png":"./assets/Closed-Status.png"
 // open & close img
+let img;
     if(card.status === "open"){
         img = "./assets/Open-Status.png"
     }else{
@@ -47,29 +48,30 @@ cards.forEach((card) => {
 
 
 //priority 
-// cards.forEach((card)=>{
-    
-// //let priorityColor ="";   
-// if ( card.priority === "high"){
-//     style.color = "red"
-// }else if (card.priority === "medium"){
-//     style.color ="yellow"
-// }else if(card.priority === "low"){
-//     style.color="#9CA3AF"
-// }
-// })
-
- //onclick="my_modal_5.showModal()"
-
+  let priority = "bg-gray-200, text-gray-800";
+        if (card.priority === "high") {
+            priority = "bg-red-100 text-red-500";
+}       else if (card.priority === "medium") {
+            priority = "bg-yellow-100 text-yellow-600";
+}       else if (card.priority === "low") {
+            priority = "bg-green-100 text-green-500";
+}
+//border
+let border="border-green-500";
+    if(card.priority === "high" && "medium"){
+        border = "border-green-500";
+    }else if (card.priority === "low"){
+        border = "border-purple-500"
+    }
 
     allIssues.innerHTML =`
 
-           <div  onclick="loadModal(${card.id})" class="bg-#EFEFEF p-5 rounded-md space-y-5 gap-10 shadow-xl border-t-5 border-green-500 ">
+           <div  onclick="loadModal(${card.id})" class="bg-#EFEFEF p-5 rounded-md space-y-5 gap-10 shadow-xl border-t-5 ${border}">
             
             <div class="flex justify-between">
                 <div><img src="${img}" alt="${card.status}"></div>
 
-                <p class="btn btn-soft btn-error p-2 h-5 text-sm rounded-full">${card.priority}</p>
+                    <p class=" px-2 text-sm rounded-full ${priority} font-semibold">${card.priority}</p>
             </div>
 
             <div>
@@ -198,15 +200,16 @@ document.getElementById("search-btn").addEventListener('click',function(){
     const searchData = inputData.value.trim().toLowerCase()
     console.log(searchData);
 
- fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${searchData}`)
+ fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${(searchData)}`)
  .then ((res)=> res.json())
  .then((data )=>{
     const allData = data.data
     //console.log(allData);
 
-    const allSearchData = allData.filter((card) => card.title.toLowerCase().includes(searchData)
+    const allSearchData = allData.filter((cards) => cards.title.toLowerCase().includes(searchData)
 )
-      console.log(allSearchData);
+     displayCard(allSearchData);
  })
+
 })
 
