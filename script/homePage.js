@@ -34,16 +34,13 @@ cards.forEach((card) => {
      const allIssues = document.createElement("div")//${card.meaning} /${card.pronunciation}
      allIssues.className ="bg-#EFEFEF   "
 
-
-
-
-    //  const Img = card.status === ./assets/Open-Status.png":"./assets/Closed-Status.png"
 // open & close img
-let img;
+
+let img="";
     if(card.status === "open"){
-        img = "./assets/Open-Status.png"
+        img = "/assets/Open-Status.png"
     }else{
-        img = "./assets/Closed-Status.png"
+        img = "/assets/closed.png"
     }
 
 
