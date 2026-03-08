@@ -1,5 +1,5 @@
 
-
+let allCards =[];
 
 //spinner
 
@@ -14,20 +14,25 @@ const loadingSpinner = (spinner) =>{
 
     }
 } 
-loadingSpinner()
+loadingSpinner();
 
 //GitHub Issues Tracker
+
 const cardsIssues = document.getElementById("cards-issues")
 
 async function cardsIssuesItem() {
     loadingSpinner(true)
     const res = await fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues")
     const data = await res.json()
-    displayCard(data.data);
+    allCards = data.data
+    displayCard(allCards)
+    renderOpen(allCards)
+    renderClosed(allCards)
+   
 }
 
 
-function displayCard (cards) {
+function displayCard(cards) {
 console.log(cards);
 
 cards.forEach((card) => {
@@ -38,7 +43,7 @@ cards.forEach((card) => {
 
 let img="";
     if(card.status === "open"){
-        img = "/assets/Open-Status.png"
+        img = "./assets/open.png"
     }else{
         img = "/assets/closed.png"
     }
@@ -51,7 +56,7 @@ let img="";
 }       else if (card.priority === "medium") {
             priority = "bg-yellow-100 text-yellow-600";
 }       else if (card.priority === "low") {
-            priority = "bg-green-100 text-green-500";
+            priority = "bg-gray-100 text-gray-500";
 }
 //border
 let border="border-green-500";
@@ -63,7 +68,7 @@ let border="border-green-500";
 
     allIssues.innerHTML =`
 
-           <div  onclick="loadModal(${card.id})" class="bg-#EFEFEF p-5 rounded-md space-y-5 gap-10 shadow-xl border-t-5 ${border}">
+           <div  onclick="loadModal(${card.id})" class="bg-[#EFEFEF] p-5 rounded-md space-y-5 gap-10 shadow-xl border-t-5 ${border}">
             
             <div class="flex justify-between">
                 <div><img src="${img}" alt="${card.status}"></div>
@@ -100,19 +105,17 @@ let border="border-green-500";
 }
  cardsIssuesItem()
 
-
-
-//issues-sec
-// const issuesID = document.getElementById("issues-id")
-
-
-
 //  btns
 
-const allBtn = document.getElementById("all-btn")
-const openBtn = document.getElementById("open-btn")
-const closedBtn = document.getElementById("closed-btn")
+const allBtn = document.getElementById("all-btn");
+const openBtn = document.getElementById("open-btn");
+const closedBtn = document.getElementById("closed-btn");
 
+const openContainer = document.getElementById("open-container")
+const closedContainer = document.getElementById("closed-container")
+console.log(cardsIssues,openContainer,closedContainer);
+
+// projectIssues()
 
 function btns(id) {
     allBtn.classList.remove('bg-blue-700', 'text-white')
@@ -132,6 +135,30 @@ function btns(id) {
     //console.log(clickedBtn);
 
    // console.log(id);
+   const pages = [cardsIssues,openContainer,closedContainer];
+   for (const sec of pages) {
+    sec.classList.add("hidden")
+    
+   }
+    if(id === "all-btn"){
+        cardsIssues.classList.remove("hidden")
+    }
+
+    if(id === "open-btn"){
+        openContainer.classList.remove("hidden")
+        // const openCards = allCards.filter(card => card.status === "open")
+        // displayCard(openCards)
+    }
+
+    if(id === "closed-btn"){
+        closedContainer.classList.remove("hidden")
+        // const closedCards = allCards.filter(card => card.status.toLowerCase() === "closed")
+        // displayCard(closedCards)
+    }
+const issuesId = document.querySelector(".issues-id")
+    issuesId.innerText = cardsIssues.children.length;
+    // issuesId.innerText = openContainer.children.length;
+    // issuesId.innerText = closedContainer.children.length;
 }
 
 
@@ -147,7 +174,7 @@ const loadModal =async (id) => {
    displayModal(modalData.data);
 }
 
-const displayModal =(modal)=>{
+const displayModal=(modal)=>{
     console.log(modal);
     const modalDetails =document.getElementById("modal-details")
     modalDetails.innerHTML=`   
@@ -195,7 +222,10 @@ document.getElementById("search-btn").addEventListener('click',function(){
     const inputData = document.getElementById("search-data")
 
     const searchData = inputData.value.trim().toLowerCase()
-    console.log(searchData);
+   // console.log(searchData);
+   if(!searchData){
+    return
+   }
 
  fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${(searchData)}`)
  .then ((res)=> res.json())
@@ -205,8 +235,135 @@ document.getElementById("search-btn").addEventListener('click',function(){
 
     const allSearchData = allData.filter((cards) => cards.title.toLowerCase().includes(searchData)
 )
-     displayCard(allSearchData);
- })
+displayCard(allSearchData);
+})
 
 })
 
+
+
+
+// render
+
+function renderOpen(cards){
+    openContainer.innerHTML = "";
+    const openCards = cards.filter(card => card.status === "open");
+
+openCards.forEach(card => {
+
+    let border = "border-green-500";
+    let priority = "bg-green-200 text-green-700";
+    let img = "./assets/open.png"; 
+
+if(card.priority === "high"){
+    border = "border-red-500";
+    priority = "bg-red-200 text-red-700";
+}
+
+else if(card.priority === "medium"){
+    border = "border-red-500";
+    priority = "bg-yellow-200 text-yellow-700";
+}
+
+const div = document.createElement("div");
+
+div.innerHTML = `
+<div onclick="loadModal(${card.id})" class="bg-[#EFEFEF] p-5 rounded-md space-y-5 gap-10 shadow-xl border-t-4 ${border}">
+    
+    <div class="flex justify-between">
+        <div><img src="${img}" alt="${card.status}"></div>
+
+        <p class="px-2 text-sm rounded-full ${priority} font-semibold">${card.priority}</p>
+    </div>
+
+    <div>
+        <p class="font-semibold text-xl">${card.title}</p>
+        <p class="text-[#64748B] text-sm">${card.description}</p>
+    </div>
+
+    <div class="text-left">
+        <p class="btn btn-outline btn-error h-5 rounded-full">
+        <i class="fa-solid fa-bug" style="color: rgb(241,45,14)"></i> Bug</p>
+
+        <p class="btn btn-outline btn-warning h-5 rounded-full">
+        <i class="fa-solid fa-life-ring fa-xs" style="color: rgb(188,154,74);"></i> Help wanted</p>
+    </div>
+
+    <hr>
+
+    <div class="text-[#64748B] text-sm">
+        <p>${card.createdAt}</p>
+        <p>${card.updatedAt}</p>
+    </div>
+
+</div>
+`;
+
+openContainer.appendChild(div);
+
+});
+
+}
+
+
+//renderClosed
+function renderClosed(cards){
+
+    openContainer.innerHTML = "";
+    const closeCards = cards.filter(card => card.status === "closed");
+    closeCards.forEach(card => {
+
+        let priority = "bg-green-200 text-green-700";
+        let border = "border-green-500";
+        let img = "./assets/closed.png";
+
+
+if(card.priority === "medium"){
+    border = "border-purple-500";
+    priority = "bg-yellow-200 text-yellow-700";
+}
+
+else if(card.priority === "low"){
+    border = "border-purple-500";
+    priority = "bg-purple-200 text-purple-700";
+}
+
+const div = document.createElement("div");
+
+div.innerHTML = `
+    <div onclick="loadModal(${card.id})" class="bg-[#EFEFEF] p-5 rounded-md space-y-5 gap-10 shadow-xl border-t-4 ${border}">
+    
+        <div class="flex justify-between">
+            <div><img src="${img}" alt="${card.status}"></div>
+
+            <p class="px-2 text-sm rounded-full ${priority} font-semibold">${card.priority}</p>
+        </div>
+
+        <div>
+            <p class="font-semibold text-xl">${card.title}</p>
+            <p class="text-[#64748B] text-sm">${card.description}</p>
+        </div>
+
+        <div class="text-left">
+            <p class="btn btn-outline btn-error h-5 rounded-full">
+             <i class="fa-solid fa-bug" style="color: rgb(241,45,14)"></i> Bug</p>
+
+            <p class="btn btn-outline btn-warning h-5 rounded-full">
+            <i class="fa-solid fa-life-ring fa-xs" style="color: rgb(188,154,74);"></i> Help wanted</p>
+        </div>
+
+    <hr>
+
+        <div class="text-[#64748B] text-sm">
+            <p>${card.createdAt}</p>
+            <p>${card.updatedAt}</p>
+        </div>
+
+    </div>
+`;
+
+closedContainer.appendChild(div);
+
+});
+
+}
