@@ -34,14 +34,14 @@ async function cardsIssuesItem() {
 
 function displayCard(cards) {
 console.log(cards);
-
+cardsIssues.innerHTML = ""; 
 cards.forEach((card) => {
      const allIssues = document.createElement("div")//${card.meaning} /${card.pronunciation}
      allIssues.className ="bg-#EFEFEF   "
 
 // open & close img
 
-let img="";
+let img="/assets/closed.png";
     if(card.status === "open"){
         img = "./assets/open.png"
     }else{
@@ -106,6 +106,7 @@ let border="border-green-500";
  cardsIssuesItem()
 
 //  btns
+const issuesId = document.querySelector(".issues-id")
 
 const allBtn = document.getElementById("all-btn");
 const openBtn = document.getElementById("open-btn");
@@ -142,23 +143,24 @@ function btns(id) {
    }
     if(id === "all-btn"){
         cardsIssues.classList.remove("hidden")
+        issuesId.innerText = cardsIssues.children.length;
     }
 
     if(id === "open-btn"){
         openContainer.classList.remove("hidden")
+        issuesId.innerText = openContainer.children.length;
+
         // const openCards = allCards.filter(card => card.status === "open")
         // displayCard(openCards)
     }
 
     if(id === "closed-btn"){
         closedContainer.classList.remove("hidden")
+        issuesId.innerText = closedContainer.children.length;
         // const closedCards = allCards.filter(card => card.status.toLowerCase() === "closed")
         // displayCard(closedCards)
     }
-const issuesId = document.querySelector(".issues-id")
-    issuesId.innerText = cardsIssues.children.length;
-    // issuesId.innerText = openContainer.children.length;
-    // issuesId.innerText = closedContainer.children.length;
+    
 }
 
 
@@ -243,11 +245,12 @@ displayCard(allSearchData);
 
 
 
-// render
+// openRender
 
 function renderOpen(cards){
     openContainer.innerHTML = "";
     const openCards = cards.filter(card => card.status === "open");
+    //console.log(openCards);
 
 openCards.forEach(card => {
 
@@ -256,12 +259,12 @@ openCards.forEach(card => {
     let img = "./assets/open.png"; 
 
 if(card.priority === "high"){
-    border = "border-red-500";
+    border = "border-green-500";
     priority = "bg-red-200 text-red-700";
 }
 
 else if(card.priority === "medium"){
-    border = "border-red-500";
+    border = "border-green-500";
     priority = "bg-yellow-200 text-yellow-700";
 }
 
@@ -309,7 +312,7 @@ openContainer.appendChild(div);
 //renderClosed
 function renderClosed(cards){
 
-    openContainer.innerHTML = "";
+    closedContainer.innerHTML = "";
     const closeCards = cards.filter(card => card.status === "closed");
     closeCards.forEach(card => {
 
