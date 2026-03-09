@@ -101,14 +101,19 @@ let border="border-green-500";
 
     cardsIssues.appendChild(allIssues)
 
-    loadingSpinner(false)
+    
+    
+    
 
-
+    
+    const issuesId = document.querySelector(".issues-id")
+    issuesId.innerText = cards.length;
 });
 
-const issuesId = document.querySelector(".issues-id")
-issuesId.innerText = cards.length;
+
+loadingSpinner(false)
 }
+
 cardsIssuesItem()
 
 //  btns
